@@ -1,0 +1,88 @@
+.navigation {
+    position: sticky;
+    top: 0px;
+    list-style: none;
+    display: flex;
+    height: 60px;
+    width: 100%;
+    background-color: #4bec58;
+    overflow: hidden;
+}
+
+.navigation a {
+    flex: auto;
+    text-align: center;
+    width: auto;
+    font-size: 18px;
+    display: block;
+    text-decoration: none;
+    height: 60px;
+    line-height: 60px;
+    font-family: sans-serif;
+    color: blue;
+}
+
+.navigation a:hover {
+    background-color: #008600;
+    color: white;
+}
+
+.mainPage {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: white;
+    font-family: sans-serif;
+}
+
+.mainPage>div {
+    border: solid black;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.contents {
+    flex: 1;
+    padding: 5px;
+}
+
+.contents p {
+    font-weight: bold;
+}
+
+.contents a {
+    text-decoration: none;
+    color: black;
+}
+
+.mainDisplay {
+    flex: 6;
+    color: black;
+    padding: 10px;
+}
+
+.mainPage h1 {
+    font-size: 36px;
+}
+
+.mainDisplay p {
+    font-size: 24px;
+}
+
+.homeDisplay {
+}
+
+.distributionDisplay {
+}
+
+.tTestDisplay {
+}
+
+.correlationsDisplay {
+}
+
+.anovaDisplay {
+}
+
+.tablesDisplay {
+}
