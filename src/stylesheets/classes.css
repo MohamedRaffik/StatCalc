@@ -72,17 +72,22 @@
 .homeDisplay {
 }
 
-.distributionDisplay {
+.distributionsDisplay {
+    display: none;
 }
 
 .tTestDisplay {
+    display: none;
 }
 
 .correlationsDisplay {
+    display: none;
 }
 
 .anovaDisplay {
+    display: none;
 }
 
 .tablesDisplay {
+    display: none;
 }
