@@ -8,20 +8,15 @@ function GCalc (data) {
 
 }
 
-$(document).ready(function() {
-    /** Navigation Bar click functions, displays the content of the selected
-      * Section by fading out the current content and fading in the new content
-     **/
-    var current_display = 0;
-    $(".navigation > a").each( (i, button) => {
-        $(button).click( () => {
-            if (i == current_display) { return; }
-            $($(".mainDisplay > div")[current_display]).fadeOut(function() {
-                $($(".mainDisplay > div")[i]).fadeIn();
-            });
-            current_display = i;
-        });
+function hashchange(e) {
+    $(".mainDisplay").first().fadeOut( () => {
+        if (!e) { e = "#home"; }
+        var file = "src/pages/"+e.split("#")[1];
+        $(".mainDisplay").first().load(file+".html").fadeIn();
     });
+}
 
-    $("#generalCalcbutton").click( () =>{ GCalc($("textarea[name=gdata]").val()); } );
+$(document).ready(function() {
+    $(window).on("hashchange", (e) => hashchange(e.originalEvent.newURL));
+    hashchange(window.location.hash);
 });

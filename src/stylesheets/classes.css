@@ -68,7 +68,3 @@
 .mainDisplay p {
     font-size: 24px;
 }
-
-.mainDisplay > div + div {
-    display: none;
-}
