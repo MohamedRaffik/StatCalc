@@ -14,7 +14,7 @@
             <h1>Statistics Calculator</h1>
         </header>
         <nav class="navigation">
-            <a href="#">Home</a>
+            <a href="#home">Home</a>
             <a href="#distributions">Distributions</a>           <!--Probabiliy, Sampling-->
             <a href="#tTests">T Statistic</a>              <!--One, Two Chi squared-->
             <a href="#correlations">Correlations</a>
@@ -23,18 +23,14 @@
         </nav>
         <div class="mainPage">
             <div class="contents">
-                <p>Articles</p>
-                <ul>
-                    <a href="#whatIsStatistics"><li>What is Statistics?</li></a>
-                </ul>
                 <p>Calculators</p>
                 <ul>
                     <a href="#generalCalc"><li>General Calculator</li></a>
                 </ul>
             </div>
             <div class="mainDisplay">
-                <div class="homeDisplay">
-                    <h1 id="whatIsStatistics">What is Statistics?</h1>
+                <div>
+                    <h1>What is Statistics?</h1>
                     <hr />
                         <p>Statistics is a branch of mathematics dealing with the collection, analysis, interpretation, presentation, and organization of data. In applying statistics to, for example, a scientific,
                             industrial, or social problem, it is conventional to begin with a statistical population or a statistical model process to be studied. Populations can be diverse topics such as "all people
@@ -50,25 +46,43 @@
                         </p>
                         <br />
                         <h1 align="center">General Statistics Calculator</h1>
-                        <form id=id="generalCalc" action="#">
+                        <form action="#">
                             <br />
-                            <textarea name="data" placeholder="Enter Data: (e.g 1 2 3 4)"></textarea>
-                            <br /><br /><button type="button">Calculate</button>
+                            <textarea name="gdata" placeholder="Enter Data: (e.g 1,2,3,4)"></textarea>
+                            <br /><br /><button id="generalCalcbutton" type="button">Calculate</button>
                         </form>
+                        <div id="gTable">
+                            <p>Min</p>
+                            <p> </p>
+                            <p>Max</p>
+                            <p> </p>
+                            <p>Sum</p>
+                            <p> </p>
+                            <p>Median</p>
+                            <p> </p>
+                            <p>Mode</p>
+                            <p> </p>
+                            <p>Mean</p>
+                            <p> </p>
+                            <p>Variance</p>
+                            <p> </p>
+                            <p>Standard Deviation</p>
+                            <p> </p>
+                        </div>
                 </div>
-                <div class="distributionsDisplay">
+                <div>
                     <h1>Statistical Distributions<h1>
                 </div>
-                <div class="tTestDisplay">
+                <div>
                     <h1>T Statistic</h1>
                 </div>
-                <div class="correlationsDisplay">
+                <div>
                     <h1>Correlations</h1>
                 </div>
-                <div class="anovaDisplay">
+                <div>
                     <h1>ANOVA Table</h1>
                 </div>
-                <div class="tablesDisplay">
+                <div>
                     <h1>T Table</h1>
                 </div>
             </div>

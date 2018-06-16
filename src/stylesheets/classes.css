@@ -35,7 +35,7 @@
     font-family: sans-serif;
 }
 
-.mainPage>div {
+.mainPage > div {
     border: solid black;
     border-radius: 10px;
     margin: 5px;
@@ -69,25 +69,6 @@
     font-size: 24px;
 }
 
-.homeDisplay {
-}
-
-.distributionsDisplay {
-    display: none;
-}
-
-.tTestDisplay {
-    display: none;
-}
-
-.correlationsDisplay {
-    display: none;
-}
-
-.anovaDisplay {
-    display: none;
-}
-
-.tablesDisplay {
+.mainDisplay > div + div {
     display: none;
 }
