@@ -23,6 +23,6 @@ function hashchange(e) {
 }
 
 $(document).ready(function() {
-    $(window).on("hashchange", (e) => hashchange(e.originalEvent.newURL));
+    $(window).on("hashchange", (e) => hashchange(window.location.hash));
     hashchange(window.location.hash);
 });
