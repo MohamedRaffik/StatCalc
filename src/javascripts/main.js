@@ -15,7 +15,7 @@ function addEvents(ext) {
 
 function hashchange(e) {
     $(".mainDisplay").first().fadeOut( () => {
-        if (!e) { e = "#home"; }
+        if (!e) { e = "#home"; window.location.hash = 'home'; }
         var ext = e.split("#")[1];
         var file = "src/pages/"+ext+".html";
         $(".mainDisplay").first().load(file).fadeIn( () => addEvents(ext));
@@ -24,5 +24,5 @@ function hashchange(e) {
 
 $(document).ready(function() {
     $(window).on("hashchange", (e) => hashchange(e.originalEvent.newURL));
-    hashchange('#home');
+    hashchange(window.location.hash);
 });
