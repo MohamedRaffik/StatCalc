@@ -18,7 +18,9 @@
   },
   "homepage": "https://github.com/MohamedRaffik/StatCalc#readme",
   "dependencies": {
-    "live-server": "^1.2.0",
     "statistical-js": "^2.1.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.0"
   }
 }

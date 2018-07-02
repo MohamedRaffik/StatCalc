@@ -1,18 +1,24 @@
 function GCalc (data) {
     var str = data.split(",");
     var num = str.map(n => parseInt(n));
-    const data = statistical.methods.summary(num);
+    const summary = statistical.methods.summary(num);
     const qrange = statistical.methods.interQuartileRange(num);
     const svariance = statistical.methods.sampleVariance(num);
     const sdev = statistical.methods.sampleStdDeviation(num);
+    console.log(summary);
+}
+
+function addEvents(ext) {
+    if (ext == "home") { $("#gCalcbutton").click( () => GCalc($("#gdata").val())); }
 
 }
 
 function hashchange(e) {
     $(".mainDisplay").first().fadeOut( () => {
         if (!e) { e = "#home"; }
-        var file = "src/pages/"+e.split("#")[1];
-        $(".mainDisplay").first().load(file+".html").fadeIn();
+        var ext = e.split("#")[1];
+        var file = "src/pages/"+ext+".html";
+        $(".mainDisplay").first().load(file).fadeIn( () => addEvents(ext));
     });
 }
 
