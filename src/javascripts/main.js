@@ -24,5 +24,5 @@ function hashchange(e) {
 
 $(document).ready(function() {
     $(window).on("hashchange", (e) => hashchange(e.originalEvent.newURL));
-    hashchange(window.location.hash);
+    hashchange('#home');
 });
