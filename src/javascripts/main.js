@@ -24,5 +24,6 @@ function hashchange(e) {
 
 $(document).ready(function() {
     $(window).on("hashchange", (e) => hashchange(window.location.hash));
+    $(window).onload("hashchange", (e) => hashchange(window.location.hash));
     hashchange(window.location.hash);
 });
