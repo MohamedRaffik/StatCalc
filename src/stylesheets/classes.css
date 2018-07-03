@@ -28,7 +28,6 @@
 }
 
 .mainPage {
-    display: flex;
     height: 100%;
     width: 100%;
     background-color: white;
@@ -36,35 +35,18 @@
 }
 
 .mainPage > div {
-    border: solid black;
-    border-radius: 10px;
-    margin: 5px;
-}
-
-.contents {
-    flex: 1;
-    padding: 5px;
-}
-
-.contents p {
-    font-weight: bold;
-}
-
-.contents a {
-    text-decoration: none;
-    color: black;
-}
-
-.mainDisplay {
-    flex: 6;
-    color: black;
     padding: 10px;
+    margin: 10px;
 }
 
 .mainPage h1 {
     font-size: 36px;
 }
 
-.mainDisplay p {
+.mainPage p {
     font-size: 24px;
+}
+
+.plot-container plotly {
+    width: 100%;
 }

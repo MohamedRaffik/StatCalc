@@ -26,6 +26,8 @@ form {
 button {
     height: 50px;
     font-size: 16px;
+    width: 100px;
+    text-align: center;
 }
 
 textarea {
@@ -34,4 +36,25 @@ textarea {
     resize: none;
     background-color: lightyellow;
     padding: inherit;
+    line-height: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: solid black;
+}
+
+th, td {
+    border: 1px solid grey;
+    width: 50%;
+    padding: 10px;
+}
+
+td:nth-child(even) {
+    text-align: center;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }
