@@ -2,21 +2,25 @@
     position: sticky;
     top: 0px;
     list-style: none;
-    display: flex;
     height: 60px;
     width: 100%;
     background-color: #4bec58;
-    overflow: hidden;
 }
 
-.navigation a {
+.nav_options {
+    min-width: 930px;
+    max-width: 70%;
+    display: flex;
+    height: 60px;
+    align-items: center;
+}
+
+.nav_options a {
     flex: auto;
     text-align: center;
-    width: auto;
     font-size: 18px;
     display: block;
     text-decoration: none;
-    height: 60px;
     line-height: 60px;
     font-family: sans-serif;
     color: blue;
@@ -29,9 +33,11 @@
 
 .mainPage {
     height: 100%;
-    width: 100%;
+    width: 70%;
     background-color: white;
     font-family: sans-serif;
+    margin-left: 15%;
+    margin-right: 15%;
 }
 
 .mainPage > div {

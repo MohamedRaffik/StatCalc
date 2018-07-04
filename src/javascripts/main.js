@@ -27,9 +27,9 @@ function frequencygraph(numbers) {
         }
         return count;
     });
-    console.log(uniquevalues.map( (v) => v.toString()));
-    var data = [{x: uniquevalues.map( (v) => v.toString()), y: counts, type: 'bar'}];
-    var layout = {title: 'Frequencies'};
+    var xVals = uniquevalues.map( (v) => "("+v.toString()+")");
+    var data = [{x: xVals, y: counts, type: 'bar'}];
+    var layout = {title: 'Frequencies', useResizeHandler: true, autosize: true, height: undefined, width: undefined};
     Plotly.newPlot('display', data, layout);
 }
 
