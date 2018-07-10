@@ -1,7 +1,7 @@
 function GCalc (data) {
     if (data == "") { return; }
     var str = data.split(",");
-    var num = str.map(n => parseInt(n));
+    var num = str.map(function(n) { parseInt(n); });
     var stats = statistical.methods.summary(num);
     var svar = statistical.methods.sampleVariance(num);
     var sstd = statistical.methods.sampleStdDeviation(num);
@@ -20,15 +20,15 @@ function GCalc (data) {
 }
 
 function frequencygraph(numbers) {
-    var uniquevalues = numbers.filter((v, i, numbers) =>  numbers.indexOf(v) === i );
-    var counts = uniquevalues.map((v) => {
+    var uniquevalues = numbers.filter(function(v, i, numbers) { numbers.indexOf(v) === i; });
+    var counts = uniquevalues.map(function(v) {
         let count = 0;
         for (let i = 0; i < numbers.length; i++) {
             if (numbers[i] == v) { count += 1; }
         }
         return count;
     });
-    var xVals = uniquevalues.map((v) => "("+v.toString()+")");
+    var xVals = uniquevalues.map(function(v) { "("+v.toString()+")"; });
     var data = [{x: xVals, y: counts, type: 'bar'}];
     var layout = {title: 'Frequencies', useResizeHandler: true, autosize: true, height: undefined, width: undefined};
     Plotly.newPlot('display', data, layout);
@@ -37,8 +37,8 @@ function frequencygraph(numbers) {
 function addEvents(ext) {
     if (ext == "home") {
         $(window).off("resize");
-        $("#gCalcbutton").click(() => GCalc($("#gdata").val()));
-        $(window).on("resize", () => GCalc($("#gdata").val()));
+        $("#gCalcbutton").click( function() { GCalc($("#gdata").val()); });
+        $(window).on("resize", function() { GCalc($("#gdata").val()); });
     }
     else {
         $(window).off("resize");
@@ -46,15 +46,15 @@ function addEvents(ext) {
 }
 
 function hashchange(e) {
-    $(".mainPage").first().fadeOut(() => {
+    $(".mainPage").first().fadeOut(function() {
         if (!e) { e = "#home"; }
         var ext = e.split("#")[1];
         var file = "src/pages/"+ext+".html";
-        $(".mainPage").first().load(file).fadeIn( () => addEvents(ext));
+        $(".mainPage").first().load(file).fadeIn( function() { addEvents(ext) });
     });
 }
 
 $(document).ready(function() {
-    $(window).on("hashchange", (e) => hashchange(window.location.hash));
+    $(window).on("hashchange", function(e) { hashchange(window.location.hash); });
     hashchange(window.location.hash);
 });
