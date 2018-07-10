@@ -1,4 +1,5 @@
 function GCalc (data) {
+    if (data == "") { return; }
     var str = data.split(",");
     var num = str.map(n => parseInt(n));
     var stats = statistical.methods.summary(num);
@@ -19,27 +20,33 @@ function GCalc (data) {
 }
 
 function frequencygraph(numbers) {
-    var uniquevalues = numbers.filter( (v, i, numbers) =>  numbers.indexOf(v) === i );
-    var counts = uniquevalues.map( (v) => {
+    var uniquevalues = numbers.filter((v, i, numbers) =>  numbers.indexOf(v) === i );
+    var counts = uniquevalues.map((v) => {
         let count = 0;
         for (let i = 0; i < numbers.length; i++) {
             if (numbers[i] == v) { count += 1; }
         }
         return count;
     });
-    var xVals = uniquevalues.map( (v) => "("+v.toString()+")");
+    var xVals = uniquevalues.map((v) => "("+v.toString()+")");
     var data = [{x: xVals, y: counts, type: 'bar'}];
     var layout = {title: 'Frequencies', useResizeHandler: true, autosize: true, height: undefined, width: undefined};
     Plotly.newPlot('display', data, layout);
 }
 
 function addEvents(ext) {
-    if (ext == "home") { $("#gCalcbutton").click( () => GCalc($("#gdata").val())); }
-
+    if (ext == "home") {
+        $(window).off("resize");
+        $("#gCalcbutton").click(() => GCalc($("#gdata").val()));
+        $(window).on("resize", () => GCalc($("#gdata").val()));
+    }
+    else {
+        $(window).off("resize");
+    }
 }
 
 function hashchange(e) {
-    $(".mainPage").first().fadeOut( () => {
+    $(".mainPage").first().fadeOut(() => {
         if (!e) { e = "#home"; }
         var ext = e.split("#")[1];
         var file = "src/pages/"+ext+".html";
