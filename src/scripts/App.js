@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+import { Route, Link } from 'react-router-dom'
+import Home from "./Home"
 import '../stylesheets/App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header>
-            <h1>Statistics Calculator</h1>
-        </header>
-        <nav class="navigation">
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#dist">Standard Distributions</a></li>
-                <li><a href="#tstat">Other Distributions</a></li>
-                <li><a href="#correl">Correlations</a></li>
-                <li><a href="#anova">ANOVA Table</a></li>
-                <li><a href="#disttable">Distribution Tables</a></li>
-                <li><a>Calculators</a></li>
-            </ul>
-        </nav>
-        <div class="mainPage"></div>
-      </div>
-    );
-  }
+    render() {
+        const home = () => (<Home />);
+
+        return (
+            <div className="App">
+            <header>
+                <h1>Statistics Calculator</h1>
+            </header>
+                <nav class="navigation">
+                    <ul>
+                        <li><Link to="/home">Home</Link></li>
+                        <li><Link to="/dist">Standard Distributions</Link></li>
+                        <li><Link to="/tstat">Other Distributions</Link></li>
+                        <li><Link to="/correl">Correlations</Link></li>
+                        <li><Link to="/anova">ANOVA Table</Link></li>
+                        <li><Link to="/disttable">Distribution Tables</Link></li>
+                    </ul>
+                </nav>
+
+                <Route exact path="/" component={home} />
+                <Route path="/home" component={home} />
+
+            </div>
+        );
+    }
 }
 
 export default App;
