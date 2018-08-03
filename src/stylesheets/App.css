@@ -1,62 +1,63 @@
-.navigation {
-    position: sticky;
-    top: 0px;
-    list-style: none;
-    width: 100%;
-    background-color: #4bec58;
-}
+nav, .mainPage {
+  min-width: 935px;
+  max-width: 70%; }
 
-.navigation ul {
+header {
+  height: 200px;
+  width: 100%;
+  min-width: 935px;
+  max-width: 70%;
+  background-size: cover;
+  background-position: center;
+  background-image: url("../images/analytics-blur-business-590045.jpg");
+  text-align: center;
+  line-height: 170px;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 72px; }
+  header a {
+    text-decoration: none;
+    color: maroon; }
+
+nav {
+  position: sticky;
+  top: 0px;
+  list-style: none;
+  background-color: green; }
+  nav ul {
     list-style-type: none;
     margin: 0;
     display: flex;
-    min-width: 935px;
-    max-width: 70%;
     margin-left: auto;
     margin-right: auto;
-    padding: 0px;
-}
-
-.navigation li {
-    flex: auto;
-}
-
-.navigation a {
+    padding: 0px; }
+  nav li {
+    flex: auto; }
+    nav li:hover {
+      background-color: lightgreen; }
+  nav a {
     line-height: 60px;
     display: block;
-    text-decoration: none;
     text-align: center;
     font-size: 18px;
-    color: blue;
-    font-family: sans-serif;
-}
-
-.navigation li:hover {
-    background-color: #008600;
     color: white;
-}
+    font-family: sans-serif;
+    text-decoration: none; }
+    nav a:hover {
+      color: black; }
 
 .mainPage {
-    display: block;
-    height: 100%;
-    width: 70%;
-    background-color: white;
-    font-family: sans-serif;
-    min-width: 930px;
-    max-width: 70%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.mainPage > div {
+  display: block;
+  height: 100%;
+  width: 70%;
+  background-color: white;
+  font-family: sans-serif;
+  margin-left: auto;
+  margin-right: auto; }
+  .mainPage > div {
     padding: 10px;
-    margin: 10px;
-}
-
-.mainPage h1 {
-    font-size: 36px;
-}
-
-.mainPage p {
-    font-size: 24px;
-}
+    margin: 10px; }
+  .mainPage h1 {
+    font-size: 36px; }
+  .mainPage p {
+    font-size: 24px; }

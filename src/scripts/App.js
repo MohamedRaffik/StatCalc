@@ -1,20 +1,17 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom'
-import Home from "./Home"
+import { Route, Link } from 'react-router-dom';
+import Home from "./Home";
+import Dist from "./Dist";
 import '../stylesheets/App.css';
 
 class App extends Component {
     render() {
-        const home = () => (<Home />);
-
         return (
-            <div className="App">
-            <header>
-                <h1>Statistics Calculator</h1>
-            </header>
-                <nav class="navigation">
+            <div>
+            <header><Link to="/">Statistics Calculator</Link></header>
+                <nav>
                     <ul>
-                        <li><Link to="/home">Home</Link></li>
+                        <li><Link to="/">Home</Link></li>
                         <li><Link to="/dist">Standard Distributions</Link></li>
                         <li><Link to="/tstat">Other Distributions</Link></li>
                         <li><Link to="/correl">Correlations</Link></li>
@@ -23,8 +20,8 @@ class App extends Component {
                     </ul>
                 </nav>
 
-                <Route exact path="/" component={home} />
-                <Route path="/home" component={home} />
+                <Route exact path="/" component={Home} />
+                <Route path="/dist" component={Dist} />
 
             </div>
         );

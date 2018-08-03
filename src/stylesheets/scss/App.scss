@@ -1,0 +1,81 @@
+
+%sizes {
+    min-width: 935px;
+    max-width: 70%;
+}
+
+header {
+    height: 200px;
+    width: 100%;
+    min-width: 935px;
+    max-width: 70%;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../images/analytics-blur-business-590045.jpg");
+    text-align: center;
+    line-height: 170px;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 72px;
+
+    a {
+        text-decoration: none;
+        color: maroon;
+    }
+}
+
+
+nav {
+    @extend %sizes;
+    position: sticky;
+    top: 0px;
+    list-style: none;
+    background-color: green;
+
+    ul {
+        list-style-type: none;
+        margin: 0;
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 0px;
+    }
+
+    li {
+        flex: auto;
+
+        &:hover { background-color: lightgreen; }
+    }
+
+    a {
+        line-height: 60px;
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        color: white;
+        font-family: sans-serif;
+        text-decoration: none;
+
+        &:hover { color: black; }
+    }
+}
+
+.mainPage {
+    @extend %sizes;
+    display: block;
+    height: 100%;
+    width: 70%;
+    background-color: white;
+    font-family: sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+
+    & > div {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    h1 { font-size: 36px; }
+
+    p { font-size: 24px; }
+}
