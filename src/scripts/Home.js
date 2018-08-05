@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import jStat from 'jStat';
 import '../stylesheets/Home.css'
 
 class GStatCalculator extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            sum: '',
             mean: '',
             min: '',
             q1: '',
@@ -12,88 +14,99 @@ class GStatCalculator extends Component {
             q3: '',
             max: '',
             iqr: '',
-            variance: '',
-            stddev: '',
-            svariance: '',
-            samplestddev: '',
-            inputData: ''
+            inputData: '',
+            displayChart: false,
+            displayWork: false
          }
          this.updateData = this.updateData.bind(this);
+         this.showGraph = this.showGraph.bind(this);
+         this.showWork = this.showWork.bind(this);
     }
     updateData(event) {
         this.setState({inputData: event.target.value}, () => {
-            console.log(this.state.inputData);
+            var strSplit = this.state.inputData.split(',').filter((e) => e !== "");
+            var vector = strSplit.map((v) => { return Number(v); });
+            var stat = jStat(vector);
+            this.setState({
+                sum: stat.sum(),
+                mean: stat.mean(),
+                min: stat.min(),
+                q1: stat.quartiles()["0"],
+                median: stat.median(),
+                q3: stat.quartiles()["2"],
+                max: stat.max(),
+                iqr: stat.quartiles()["2"] - stat.quartiles()["0"],
+            });
         });
     }
-    updateTable() {
+    showGraph() {
+        this.setState({displayChart: !this.state.displayChart});
+    }
+    showWork() {
+        this.setState({displayWork: !this.state.displayWork});
     }
     render() {
         return (
             <div className="calc">
-                <h1 align="center">General Statistics Calculator</h1>
+                <h1>General Statistics Calculator</h1>
                 <form>
                     <br />
                     <textarea placeholder="Enter Data: (e.g 1,2,3,4)" onChange={this.updateData}></textarea>
                     <br /><br />
                 </form>
                 <br /><br />
-                <div className="table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Statistic</th>
-                                <th>Value</th>
-                            </tr>
-                            <tr>
-                                <td>Mean</td>
-                                <td>{this.state.mean}</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Minimum</td>
-                                <td>{this.state.min}</td>
-                            </tr>
-                            <tr>
-                                <td>Quartile 1</td>
-                                <td>{this.state.q1}</td>
-                            </tr>
-                            <tr>
-                                <td>Median</td>
-                                <td>{this.state.median}</td>
-                            </tr>
-                            <tr>
-                                <td>Quartile 3</td>
-                                <td>{this.state.q3}</td>
-                            </tr>
-                            <tr>
-                                <td>Maximum</td>
-                                <td>{this.state.max}</td>
-                            </tr>
-                            <tr>
-                                <td>InterQuartile Range</td>
-                                <td>{this.state.iqr}</td>
-                            </tr>
-                            <tr>
-                                <td>Variance</td>
-                                <td>{this.state.variance}</td>
-                            </tr>
-                            <tr>
-                                <td>Standard Deviation</td>
-                                <td>{this.state.stddev}</td>
-                            </tr>
-                            <tr>
-                                <td>Sample Variance</td>
-                                <td>{this.state.svariance}</td>
-                            </tr>
-                            <tr>
-                                <td>Sample Standard Deviation</td>
-                                <td>{this.state.samplestddev}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Statistic</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Mean</td>
+                            <td>{this.state.mean}</td>
+                        </tr>
+                        <tr>
+                            <td>Sum</td>
+                            <td>{this.state.sum}</td>
+                        </tr>
+                        <tr>
+                            <td>Minimum</td>
+                            <td>{this.state.min}</td>
+                        </tr>
+                        <tr>
+                            <td>Quartile 1</td>
+                            <td>{this.state.q1}</td>
+                        </tr>
+                        <tr>
+                            <td>Median</td>
+                            <td>{this.state.median}</td>
+                        </tr>
+                        <tr>
+                            <td>Quartile 3</td>
+                            <td>{this.state.q3}</td>
+                        </tr>
+                        <tr>
+                            <td>Maximum</td>
+                            <td>{this.state.max}</td>
+                        </tr>
+                        <tr>
+                            <td>InterQuartile Range</td>
+                            <td>{this.state.iqr}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <br></br><br></br>
+                <div className="graph">
+                    <a onClick={this.showGraph}>+ Show Frequency Graph / Box Plot</a>
+                    <div></div>
                 </div>
-                <div className="display"></div>
+                <hr></hr>
+                <div className="work">
+                    <a onClick={this.showWork}>+ Show Work</a>
+                    <div></div>
+                </div>
             </div>
         );
     }
@@ -102,7 +115,7 @@ class GStatCalculator extends Component {
 class Home extends Component {
     render() {
         return (
-            <div className="mainPage">
+            <div className="home">
                 <div className="info">
                     <h1>What is Statistics?</h1>
                     <hr />

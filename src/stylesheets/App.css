@@ -1,3 +1,13 @@
+nav ul {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 70%;
+  min-width: 935px; }
+
+@font-face {
+  font-family: Digital;
+  src: url("../fonts/digital-7.ttf"); }
+
 header {
   height: 200px;
   width: 100%;
@@ -6,12 +16,12 @@ header {
   background-image: url("../images/analytics-blur-business-590045.jpg");
   text-align: center;
   line-height: 170px;
-  font-style: italic;
   font-weight: bold;
-  font-size: 72px; }
+  font-size: 84px; }
   header a {
     text-decoration: none;
-    color: maroon; }
+    color: maroon;
+    font-family: Digital; }
 
 nav {
   width: 100%;
@@ -25,9 +35,7 @@ nav {
     display: flex;
     padding: 0px;
     margin-left: auto;
-    margin-right: auto;
-    max-width: 70%;
-    min-width: 935px; }
+    margin-right: auto; }
   nav li {
     flex: auto; }
     nav li:hover {
@@ -42,21 +50,3 @@ nav {
     text-decoration: none; }
     nav a:hover {
       color: black; }
-
-.mainPage {
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 70%;
-  min-width: 935px;
-  display: block;
-  height: 100%;
-  width: 70%;
-  background-color: white;
-  font-family: sans-serif; }
-  .mainPage > div {
-    padding: 10px;
-    margin: 10px; }
-  .mainPage h1 {
-    font-size: 36px; }
-  .mainPage p {
-    font-size: 24px; }
