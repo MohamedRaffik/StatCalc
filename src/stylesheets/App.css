@@ -28,7 +28,8 @@ nav {
   position: sticky;
   top: 0px;
   list-style: none;
-  background-color: green; }
+  background-color: green;
+  z-index: 1; }
   nav ul {
     list-style-type: none;
     margin: 0;

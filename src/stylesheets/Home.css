@@ -54,10 +54,28 @@
   font-weight: bold;
   background: none;
   border: none;
-  font-size: 18px; }
+  font-size: 18px;
+  user-select: none; }
   .calc .graph > a:hover, .calc .work > a:hover {
     cursor: pointer;
     color: grey; }
 
-.calc .graph > div, .calc .work > div {
-  visibility: hidden; }
+.calc .defaultView {
+  height: 0;
+  opacity: 0;
+  width: 100%;
+  display: flex; }
+  .calc .defaultView.shown {
+    transition: height 500ms 0ms, opacity 500ms 0ms;
+    opacity: 1;
+    height: 500px; }
+  .calc .defaultView.hide {
+    transition: height 500ms 0ms, opacity 500ms 0ms;
+    opacity: 0;
+    height: 0; }
+
+.calc #freq, .calc #box {
+  flex: auto;
+  width: 50%;
+  height: 100%;
+  overflow: hidden; }

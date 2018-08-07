@@ -55,6 +55,7 @@
         background: none;
         border: none;
         font-size: 18px;
+        user-select: none;
 
         &:hover {
             cursor: pointer;
@@ -62,7 +63,29 @@
         }
     }
 
-    .graph > div, .work > div {
-        visibility: hidden;
+    .defaultView {
+        height: 0;
+        opacity: 0;
+        width: 100%;
+        display: flex;
+
+        &.shown {
+            transition: height 500ms 0ms, opacity 500ms 0ms;
+            opacity: 1;
+            height: 500px;
+        }
+
+        &.hide {
+            transition: height 500ms 0ms, opacity 500ms 0ms;
+            opacity: 0;
+            height: 0;
+        }
+    }
+
+    #freq, #box {
+        flex: auto;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
     }
 }

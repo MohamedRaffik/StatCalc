@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import jStat from 'jStat';
-import '../stylesheets/Home.css'
+import Plot from 'react-plotly.js';
+import '../../stylesheets/Home.css';
 
 class GStatCalculator extends Component {
     constructor(props) {
@@ -16,8 +17,22 @@ class GStatCalculator extends Component {
             iqr: '',
             inputData: '',
             displayChart: false,
-            displayWork: false
-         }
+            displayWork: false,
+            freqData: [],
+            plotData: []
+        };
+         this.graphLayout = {
+             title: "Frequency Graph",
+             autosize: "true",
+             xaxis: { "title": "Numbers", "type": "category", "fixedrange": true },
+             yaxis: { "title": "Frequencies", "fixedrange": true },
+         };
+         this.boxLayout = {
+             title: "Box Plot",
+             autosize: "true",
+             xaxis: { "fixedrange": true },
+             yaxis: { "fixedrange": true }
+         };
          this.updateData = this.updateData.bind(this);
          this.showGraph = this.showGraph.bind(this);
          this.showWork = this.showWork.bind(this);
@@ -35,12 +50,27 @@ class GStatCalculator extends Component {
                 median: stat.median(),
                 q3: stat.quartiles()["2"],
                 max: stat.max(),
-                iqr: stat.quartiles()["2"] - stat.quartiles()["0"],
+                iqr: isNaN(stat.quartiles()["2"] - stat.quartiles()["0"]) ? '' : stat.quartiles()["2"] - stat.quartiles()["0"],
             });
+            this.changeGraphData();
         });
     }
+    changeGraphData(callback) {
+        let strSplit = this.state.inputData.split(',').filter((v) => v !== "");
+        let xVal = strSplit.filter((v, i, a) => i === a.indexOf(v));
+        let yVal = xVal.map((v) => {
+            let count = 0;
+            for (let i = 0; i < strSplit.length; i++) { count = (v === strSplit[i]) ? count + 1 : count; }
+            return count;
+        });
+        let graphData = [{ x: xVal, y: yVal, type: "bar" }];
+        let boxData = [{ x: strSplit, name: 'Set', type: "box", boxpoints: "Outliers" }];
+        this.setState({freqData: graphData}, () => this.setState({plotData: boxData}, callback));
+    }
     showGraph() {
-        this.setState({displayChart: !this.state.displayChart});
+        this.setState({displayChart: !this.state.displayChart}, () => {
+            this.changeGraphData(() => document.querySelector(".graph > div").className = this.state.displayChart ? "defaultView shown" : "defaultView hide")
+        });
     }
     showWork() {
         this.setState({displayWork: !this.state.displayWork});
@@ -100,37 +130,21 @@ class GStatCalculator extends Component {
                 <br></br><br></br>
                 <div className="graph">
                     <a onClick={this.showGraph}>+ Show Frequency Graph / Box Plot</a>
-                    <div></div>
+                    <div className="defaultView">
+                        <Plot divId="freq" useResizeHandler={true} layout={this.graphLayout} data={this.state.freqData}></Plot>
+                        <Plot divId="box" useResizeHandler={true} layout={this.boxLayout} data={this.state.plotData}></Plot>
+                    </div>
                 </div>
                 <hr></hr>
                 <div className="work">
                     <a onClick={this.showWork}>+ Show Work</a>
-                    <div></div>
+                    <div>
+
+                    </div>
                 </div>
             </div>
         );
     }
 }
 
-class Home extends Component {
-    render() {
-        return (
-            <div className="home">
-                <div className="info">
-                    <h1>What is Statistics?</h1>
-                    <hr />
-                    <p>Statistics is a branch of mathematics dealing with the collection, analysis, interpretation, presentation, and organization of data. In applying statistics to, for example, a scientific, industrial, or social problem, it is conventional to begin with a statistical population or a statistical model process to be studied. Populations can be diverse topics such as "all people living in a country" or "every atom composing a crystal". Statistics deals with all aspects of data including the planning of data collection in terms of the design of surveys and experiments. <br /><br />When census data cannot be collected, statisticians collect data by developing specific experiment designs and survey samples. Representative sampling assures that inferences and conclusions can reasonably extend from the sample to the population as a whole. An experimental study involves taking measurements of the system under study, manipulating the system, and then taking additional measurements using the same procedure to determine if the manipulation has modified the values of the measurements. In contrast, an observational study does not involve experimental manipulation. <br /><br />Two main statistical methods are used in data analysis: descriptive statistics, which summarize data from a sample using indexes such as the mean or standard deviation, and inferential statistics, which draw conclusions from data that are subject to random variation (e.g., observational errors, sampling variation). Descriptive statistics are most often concerned with two sets of properties of a distribution (sample or population): central tendency (or location) seeks to characterize the distribution's central or typical value, while dispersion (or variability) characterizes the extent to which members of the distribution depart from its center and each other. Inferences on mathematical statistics are made under the framework of probability theory, which deals with the analysis of random phenomena.
-                    </p>
-                    <hr />
-                </div>
-                <GStatCalculator />
-            </div>
-        )
-    }
-}
-
-export default Home;
-
-export {
-    GStatCalculator
-}
+export default GStatCalculator;
